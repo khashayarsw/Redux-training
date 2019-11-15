@@ -1,25 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+import {useSelector,useDispatch} from 'react-redux';
+import {Inc,Dec} from './actions';
 import './App.css';
 
 function App() {
+  var counter = useSelector(state => state.counts);
+  var logging = useSelector(state => state.login);
+  var dispatch = useDispatch();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+       <h1>Redux training</h1>
+       <p>open your redux devtool</p>
+       <p>{counter}</p>
+       {logging ? <p>zdzd</p> : 'no'}
+       <button onClick={()=>dispatch(Inc())}>+</button>
+       <button onClick={()=>dispatch(Dec())}>-</button>
+     </div>
   );
 }
 
